@@ -8,7 +8,7 @@
     2px 2px 17px grey,
     2px 2px 17px grey, 
     2px 2px 17px grey;">
-  <img style="margin-right:2px;margin-left:2px;border:#4278C0 5px solid;border-radius: 5px;background: #4278c0;" src="https://img.shields.io/badge/-^3.1.6-white?style=flat&logo=typescript"/>
+  <img style="margin-right:2px;margin-left:2px;border:#4278C0 5px solid;border-radius: 5px;background: #4278c0;" src="https://img.shields.io/badge/-^3.8.0-white?style=flat&logo=typescript"/>
 </div>
 
 # CVLinked
