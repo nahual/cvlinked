@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
@@ -8,7 +9,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './public'),
     publicPath: '/public/',
-    filename: 'build.js'
+    filename: 'build.js',
+    clean: true
   },
   module: {
     rules: [
@@ -93,6 +95,10 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'src/web/index.html',
+      publicPath: ''
+    })
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.vue', '.json'],
