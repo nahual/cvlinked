@@ -7,6 +7,7 @@
 <style lang="scss" scoped>
  .app {
    text-align: center;
+   background: $main-color;
  }
 </style>
 

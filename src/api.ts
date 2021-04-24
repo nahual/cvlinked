@@ -24,6 +24,7 @@ const initializer: Initializer =
     .and(ErrorInitializer)
     .and(RunInitializer);
 
-let app: Application = express().use('/api', ApiRouter);
-app.use('/', express.static(path.join(__dirname, '../public')));
+let app: Application = express()
+  .use('/', express.static(path.join(__dirname, '../public')))
+  .use('/api', ApiRouter);
 export const Api: Application = initializer.init(app);

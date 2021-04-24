@@ -66,6 +66,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               implementation: require("sass"),
+              additionalData: `@import 'main';`
             }
           }
         ]
@@ -97,6 +98,7 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/web/index.html',
+      favicon: 'src/web/favicon.png',
       publicPath: ''
     })
   ],
