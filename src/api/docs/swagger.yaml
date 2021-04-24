@@ -14,7 +14,50 @@
     - 
       name: "health"
       description: "Everything about API's health"
+    - 
+      name: "env"
+      description: "Returns setted ENV variables"
+  components: 
+    securitySchemes: 
+      bearerToken: 
+        type: "http"
+        scheme: "bearer"
   paths: 
+    /api/env: 
+      get: 
+        tags: 
+          - "env"
+        summary: "Returns the setted ENV variables"
+        security: 
+          - 
+            bearerToken: []
+        responses: 
+          200: 
+            description: "OK"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+                  properties: 
+                    API_NAME: 
+                      type: "string"
+                      example: "API"
+                    API_PORT: 
+                      type: "number"
+                      example: 3000
+          401: 
+            description: "Unauthorized"
+            content: 
+              application/json: 
+                schema: 
+                  type: "object"
+                  properties: 
+                    message: 
+                      type: "string"
+                      example: "you are not allowed to access endpoint GET /api/env ..."
+                    internal_code: 
+                      type: "string"
+                      example: "unauthorized"
     /api/health: 
       get: 
         tags: 
@@ -35,7 +78,7 @@
       get: 
         tags: 
           - "info"
-        summary: "Return the health status of the API"
+        summary: "Return the main info of the API"
         responses: 
           200: 
             description: "OK"

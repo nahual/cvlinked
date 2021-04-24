@@ -8,7 +8,8 @@ class ApiDocs extends Docs {
 
   tags: object[] = [
     { name: 'info', description: `Main info about API` },
-    { name: 'health', description: `Everything about API's health` }
+    { name: 'health', description: `Everything about API's health` },
+    { name: 'env', description: `Setted ENV variables` }
   ];
 
   constructor(){
@@ -26,7 +27,15 @@ class ApiDocs extends Docs {
       servers: [
         { url: this.serverUrl }
       ],
-      tags: this.tags
+      tags: this.tags,
+      components: {
+        securitySchemes: {
+          bearerToken: {
+            type: 'http',
+            scheme: 'bearer'  
+          },
+        }
+      }
     };
   }
 }

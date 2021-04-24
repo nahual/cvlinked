@@ -9,7 +9,7 @@ class InfoDocs extends Docs {
   'get /api/info'() {
     return {
       tags: ['info'],
-      summary: 'Return the health status of the API',
+      summary: 'Return the main info of the API',
       responses: {
         '200': {
           description: 'OK',
