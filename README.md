@@ -12,6 +12,9 @@
 </div>
 
 # CVLinked
+## How to install dependencies ?
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  $&nbsp; ``` npm install ```
 ## How to test ?
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
   $&nbsp; ``` npm test ```
