@@ -47,6 +47,8 @@
     "join-js": "^1.0.1",
     "json2yaml": "^1.1.0",
     "jsonwebtoken": "^8.4.0",
+    "linkedin-profile-scraper": "^2.3.1",
+    "puppeteer": "^9.0.0",
     "ramda": "^0.26.1",
     "swagger-ui-express": "^4.0.1",
     "ts-node": "^7.0.1",

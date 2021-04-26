@@ -3,6 +3,7 @@ import InfoRouter from './info'
 import HealthRouter from './health';
 import EnvRouter from './env';
 import DocsRouter from './docs';
+import LinkedInRouter from './linkedin';
 
 const router: Router = Router();
 router.get('/', (req: Request, res: Response) => res.send(`
@@ -26,6 +27,7 @@ router.get('/', (req: Request, res: Response) => res.send(`
 
 // ========== ADD YOUR ROUTERS HERE ==========
 
+  router.use(LinkedInRouter);
   router.use(InfoRouter);
   router.use(HealthRouter);
   router.use(EnvRouter);

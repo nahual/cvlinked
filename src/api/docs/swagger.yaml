@@ -16,7 +16,7 @@
       description: "Everything about API's health"
     - 
       name: "env"
-      description: "Returns setted ENV variables"
+      description: "Setted ENV variables"
   components: 
     securitySchemes: 
       bearerToken: 
