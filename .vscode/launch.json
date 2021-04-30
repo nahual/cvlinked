@@ -5,12 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Debug Typescript Api",
       "type": "node",
       "request": "launch",
-      "name": "Debug App",
-      "program": "${workspaceFolder}/app.js",
-      "outFiles": [
-        "${workspaceFolder}/**/*.js"
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register"
+      ],
+      "args": [
+        "${workspaceFolder}/src/api.ts"
       ]
     }
   ]

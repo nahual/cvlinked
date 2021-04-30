@@ -13,10 +13,20 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
+    'no-shadow': 'off',
+    'no-param-reassign': 'off',
+    'import/extensions': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
   plugins: [
     '@typescript-eslint'
   ],
+  settings: {
+    "import/resolver": {
+      node: {
+        "extensions": [".ts", ".tsx", ".js", ".jsx"]
+      }
+    },
+  },
 };

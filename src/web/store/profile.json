@@ -1,0 +1,120 @@
+{
+    "userProfile": {
+      "fullName": "Christian Luis Angelone",
+      "title": "Sr. Backend Engineer en Wildlife Studios",
+      "location": {
+        "city": null,
+        "province": null,
+        "country": "Argentina"
+      },
+      "photo": "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
+      "description": "My life through Software Development: I started in the software developing world when i was 18 mainly by curiosity; how something so magical like software could change the way we live. My firsts steps in this adventure where made under Visual Basic, making simple windows desktop applications and studying the language.After a while i challenge myself to develop a domotic oriented application that handles a ethernet I/O manager device through costum commands, making possible to turn on and off light, measure temperature and humidity and alert open/close status.In addition the program was able to set rules and show up statistics over collected data stored on a MySQL database.Nowadays, this application runs over my house. One year later, thanks to college i started to learn some low level languages like C and C++ which flowed me to OOP paradigm.Some time after, i get involved into Java and Java WEB world + some frameworks such as Struts2 and Hibernate taking some courses at EducacionIT. As i moved on college, Java appeard again in my life while i lectured \"Algoritmos y Programación III\" which not only make me deeper in Java, but also teach me how to model applications, some strategies to deal with certain situations (Design Patterns [GoF]) and a few development/developers methodologies and tools (SCRUM,XP,TDD and Continuous Integration [GIT + Ant + Jenkins]),(These ones where implemented over the final assigment of the lecture).Then moving forward on my career I dicovered data science by the hand of Luis Argerich a well known data scientists in Argentina. I really get fascinated about it, in paticularbthe fact of making machines to learn from data. Here starts my journey in Scala, Hadoop and Spark where by my self, build a hadoop/spark cluster on top of raspberry pi's, an amazing changelle. But something was missing... DATA!. So i took my mnist data i had from a kaggle competiton and started playing around....TO BE CONTINUED",
+      "url": "https://www.linkedin.com/in/christiangelone/"
+    },
+    "experiences": [
+      {
+        "title": "Sr. Backend Engineer",
+        "company": "Wildlife Studios",
+        "employmentType": null,
+        "location": {
+          "city": null,
+          "province": null,
+          "country": "Argentina"
+        },
+        "startDate": "2020-02-01T00:00:00-03:00",
+        "endDate": "2021-04-26T22:07:12-03:00",
+        "endDateIsPresent": true,
+        "description": null,
+        "durationInDays": 451
+      },
+      {
+        "title": "Software Developer",
+        "company": "Wolox",
+        "employmentType": null,
+        "location": {
+          "city": null,
+          "province": null,
+          "country": "Argentina"
+        },
+        "startDate": "2018-07-01T00:00:00-03:00",
+        "endDate": "2020-02-01T00:00:00-03:00",
+        "endDateIsPresent": false,
+        "description": null,
+        "durationInDays": 581
+      },
+      {
+        "title": "Software Developer",
+        "company": "NextTecnology SRL",
+        "employmentType": null,
+        "location": {
+          "city": null,
+          "province": null,
+          "country": "Argentina"
+        },
+        "startDate": "2011-01-01T00:00:00-03:00",
+        "endDate": "2018-07-01T00:00:00-03:00",
+        "endDateIsPresent": false,
+        "description": "Desarrollo de aplicaciones orientadas a la domoticay a las telecomunicaciones.",
+        "durationInDays": 2739
+      },
+      {
+        "title": "Software Developer",
+        "company": "Municipalidad de Pilar",
+        "employmentType": null,
+        "location": {
+          "city": null,
+          "province": null,
+          "country": "Argentina"
+        },
+        "startDate": "2014-03-01T00:00:00-03:00",
+        "endDate": "2014-10-01T00:00:00-03:00",
+        "endDateIsPresent": false,
+        "description": "Desarrollo de aplicaciones e-Government, principalmente en Java.",
+        "durationInDays": 215
+      }
+    ],
+    "education": [
+      {
+        "schoolName": "Universidad de Buenos Aires",
+        "degreeName": "Ingeniero en Informatica",
+        "fieldOfStudy": null,
+        "startDate": "2011-01-01T00:00:00-03:00",
+        "endDate": "2020-01-01T00:00:00-03:00",
+        "durationInDays": 3288
+      },
+      {
+        "schoolName": "Del Viso Day School",
+        "degreeName": "Bachiller Biligüe",
+        "fieldOfStudy": null,
+        "startDate": "2002-01-01T00:00:00-03:00",
+        "endDate": "2008-01-01T00:00:00-02:00",
+        "durationInDays": 2192
+      },
+      {
+        "schoolName": "University of Cambridge",
+        "degreeName": "FCE - First Certificate in English",
+        "fieldOfStudy": null,
+        "startDate": "2006-01-01T00:00:00-03:00",
+        "endDate": "2006-01-01T00:00:00-03:00",
+        "durationInDays": 1
+      }
+    ],
+    "volunteerExperiences": [
+      
+    ],
+    "skills": [
+      {
+        "skillName": "Scala",
+        "endorsementCount": 1
+      },
+      {
+        "skillName": "ScalaTest",
+        "endorsementCount": 1
+      },
+      {
+        "skillName": "SBT",
+        "endorsementCount": 0
+      }
+    ]
+  }
+  
