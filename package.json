@@ -50,6 +50,7 @@
     "express": "^4.16.3",
     "figlet": "^1.2.1",
     "join-js": "^1.0.1",
+    "json-2-csv": "^3.10.3",
     "json2yaml": "^1.1.0",
     "jsonwebtoken": "^8.4.0",
     "linkedin-profile-scraper": "^2.3.1",

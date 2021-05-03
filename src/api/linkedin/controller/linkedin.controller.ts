@@ -9,6 +9,7 @@ import SingleFileUploadMiddleware from '../../../lib/common/middlewares/single_f
 
 import csvtojson from 'csvtojson';
 import { v1 as uuidv1 } from 'uuid';
+import { profile } from "winston";
 @Controller('/linkedin')
 @Injectable()
 export default class LinkedInController extends ApiController {
@@ -20,20 +21,13 @@ export default class LinkedInController extends ApiController {
     super(logger, 'LinkedInController');
   }
 
-  @Get('/:username')
-  getUserProfile(@Res() res: Response, @Params('username') username: string) {
-    return this.service.getProfile(username)
-      .then(p => res.json(p))
-      .catch(err => res.status(500).json({ message: err.message }))
-  }
-
   @Post('/upload', [SingleFileUploadMiddleware])
   async uploaCsvProfiles(@Req() req: Request | any, @Res() res: Response) {
     try {
       const id = uuidv1();
       const profiles = await csvtojson().fromString(req.file.buffer.toString('utf8'))
 
-      
+      this.service.processProfiles(id, profiles)
 
       res.status(200).json({ id });
     } catch (error) {

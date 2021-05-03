@@ -83,6 +83,9 @@ export default class App extends Vue {
         file: this.file,
         onUploadProgress: (event: any) => {
           this.progress = Math.round((event.loaded * 100) / event.total);
+          if(this.progress === 100) setTimeout(() => { 
+            this.progress = 0;
+          }, 1000)
         },
       });
     }
@@ -97,7 +100,8 @@ export default class App extends Vue {
   }
 
   get getUploadResult(): Result {
-    return this.$store.getters.getUploadResult;
+    const result = this.$store.getters.getUploadResult;
+    return result
   }
 }
 </script>
