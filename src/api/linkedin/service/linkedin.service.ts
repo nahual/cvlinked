@@ -4,6 +4,8 @@ import { Education, Experience, LinkedInProfileScraper, Profile, Skill, Voluntee
 
 import { Levels, Logger, StdLogger } from "../../../lib/loggers";
 
+import moment from 'moment';
+
 @Injectable()
 export default class LinkedInService extends ApiService {
   
@@ -21,6 +23,52 @@ export default class LinkedInService extends ApiService {
     });
   }
 
+  private wasResultFound(result: {
+    userProfile: Profile;
+    experiences: Experience[];
+    education: Education[];
+    volunteerExperiences: VolunteerExperience[];
+    skills: Skill[];
+  }){
+    return result.userProfile.fullName !== null &&
+      result.userProfile.title !== null &&
+      result.userProfile.location !== null &&
+      result.userProfile.photo !== null &&
+      result.userProfile.description !== null &&
+      result.userProfile.url !== null
+  }
+
+  private generateProcessResult(profile: {link: string, date: string}, result: {
+    userProfile: Profile;
+    experiences: Experience[];
+    education: Education[];
+    volunteerExperiences: VolunteerExperience[];
+    skills: Skill[];
+  }): any {
+    if(!this.wasResultFound(result)){
+      return {
+        link: profile.link,
+        name: null,
+        is_working: null,
+        actual_work: null,
+        work_title: null,
+        work_date: null,
+        english: null,
+        nahual: null,
+        mail: null,
+      }
+    }
+
+    const date = moment(new Date(profile.date));
+
+    return {
+      link: profile.link,
+      name: result.userProfile.fullName,
+      is_working: result.experiences.length > 0 && 
+    }
+
+  }
+
   processProfiles(id: string, profiles: Array<{link: string, date: string}>): Promise<any> {
     return (async () => {
       if(!this.ready){
@@ -32,6 +80,7 @@ export default class LinkedInService extends ApiService {
         try {
             const result = await this.scraper.run(p.link)
 
+            
         } catch (error) {
           this.logger.log(Levels.ERROR, `process failed for { link: ${p.link}, date: ${p.date} }`);
         }

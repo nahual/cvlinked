@@ -53,6 +53,7 @@
     "json2yaml": "^1.1.0",
     "jsonwebtoken": "^8.4.0",
     "linkedin-profile-scraper": "^2.3.1",
+    "moment": "^2.29.1",
     "multer": "^1.4.2",
     "puppeteer": "^9.0.0",
     "ramda": "^0.26.1",
