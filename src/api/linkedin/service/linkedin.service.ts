@@ -1,8 +1,8 @@
 import { Inject, Injectable } from "@decorators/di";
 import ApiService from "../../../lib/service";
-import { LinkedInProfileScraper } from 'linkedin-profile-scraper';
+import { Education, Experience, LinkedInProfileScraper, Profile, Skill, VolunteerExperience } from 'linkedin-profile-scraper';
 
-import { Logger, StdLogger } from "../../../lib/loggers";
+import { Levels, Logger, StdLogger } from "../../../lib/loggers";
 
 @Injectable()
 export default class LinkedInService extends ApiService {
@@ -21,14 +21,21 @@ export default class LinkedInService extends ApiService {
     });
   }
 
-  getProfile(username: string): Promise<any> {
+  processProfiles(id: string, profiles: Array<{link: string, date: string}>): Promise<any> {
     return (async () => {
       if(!this.ready){
         await this.scraper.setup()
         this.ready = true
       }
-      const result = await this.scraper.run(`https://www.linkedin.com/in/${username}/`)
-      return result;
+
+      for(const p of profiles){
+        try {
+            const result = await this.scraper.run(p.link)
+
+        } catch (error) {
+          this.logger.log(Levels.ERROR, `process failed for { link: ${p.link}, date: ${p.date} }`);
+        }
+      }
     })()
   }
 };

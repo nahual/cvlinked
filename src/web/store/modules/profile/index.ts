@@ -7,6 +7,7 @@ import ProfileState from './state';
 
 const state: ProfileState = {
   profile: null,
+  uploadResult: null,
 };
 
 const ProfileModule: Module<ProfileState, RootState> = {
