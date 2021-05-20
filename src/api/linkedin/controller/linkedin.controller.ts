@@ -3,7 +3,7 @@ import { Response,} from 'express';
 import { Response as Res, Params, Controller, Get, Post, Middleware, Request as Req, Query } from '@decorators/express';
 
 import ApiController from '../../../lib/controller';
-import { Logger, StdLogger } from "../../../lib/loggers";
+import { Levels, Logger, StdLogger } from "../../../lib/loggers";
 import LinkedInService from "../service/linkedin.service";
 import SingleFileUploadMiddleware from '../../../lib/common/middlewares/single_file_upload';
 
@@ -33,6 +33,7 @@ export default class LinkedInController extends ApiController {
       this.uploadedCsv[csv.fileName] = csv.content
       res.status(200).send({ id });
     } catch (error) {
+      this.logger.log(Levels.ERROR, `Error while uploading file: ${error.message} `);
       res.status(500).json({ error });
     }
   }
