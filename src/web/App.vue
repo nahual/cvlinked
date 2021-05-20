@@ -43,6 +43,16 @@
           </v-form>
         </v-col>
       </v-row>
+      <v-row>
+        <v-btn
+          v-show="getFileId !== null"
+          color="blue darken-2"
+          class="ma-2 white--text"
+          @click="download"
+        >
+          Download {{ getFileId }}
+        </v-btn>
+      </v-row>
     </v-container>
   </v-app>
 </template>
@@ -91,6 +101,11 @@ export default class App extends Vue {
     }
   }
 
+  download(): void {
+    const url = `/api/linkedin/download?filename=${this.getFileId}`;
+    window.location.href = url;
+  }
+
   chipColor(){
     return {
       green: this.getUploadResult === Result.SUCEDEED,
@@ -101,6 +116,11 @@ export default class App extends Vue {
 
   get getUploadResult(): Result {
     const result = this.$store.getters.getUploadResult;
+    return result
+  }
+
+  get getFileId(): string {
+    const result = this.$store.getters.getFileId;
     return result
   }
 }

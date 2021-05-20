@@ -9,22 +9,21 @@ import { MutationEvents } from './mutations';
 import ProfileState from './state';
 
 export enum ActionsEvents {
-  PROFILE_FROM = 'PROFILE_FROM',
+  DOWNLOAD_FILE = 'DOWNLOAD_FILE',
   UPLOAD = 'UPLOAD'
 }
 
 export const actions: ActionTree<ProfileState, RootState> = {
-  async [ActionsEvents.PROFILE_FROM]({ commit }, username: string) {
+  async [ActionsEvents.DOWNLOAD_FILE]({ commit }, filename: string) {
     try {
-      const res = await Vue.axios
-        .get<Profile>(`${host}/api/linkedin/${username}`);
-      return commit(MutationEvents.SET_PROFILE, res.data);
+      await Vue.axios
+        .get<Profile>(`${host}/api/linkedin/download?filename=${filename}`);
     } catch (err) {
       if (err.response) {
         return console.log(`Error: ${err.data}`);
       }
-      return null;
     }
+    return null;
   },
   async [ActionsEvents.UPLOAD]({ commit }, { file, onUploadProgress }) {
     try {
@@ -32,10 +31,11 @@ export const actions: ActionTree<ProfileState, RootState> = {
       const formData = new FormData();
       formData.append('csv', new Blob([buffer as BlobPart], { type: 'text/csv' }));
       commit(MutationEvents.UPLOAD_RESULT, Result.IN_PROGRESS);
-      await Vue.axios.post<Identifier>(`${host}/api/linkedin/upload`, formData, {
+      const res = await Vue.axios.post<Identifier>(`${host}/api/linkedin/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         onUploadProgress,
       });
+      commit(MutationEvents.SET_FILEID, `${res.data.id}.csv`);
       commit(MutationEvents.UPLOAD_RESULT, Result.SUCEDEED);
     } catch (error) {
       commit(MutationEvents.UPLOAD_RESULT, Result.FAILED);

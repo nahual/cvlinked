@@ -5,7 +5,7 @@ import RootState from '../../state';
 import ProfileState from './state';
 
 const getters: GetterTree<ProfileState, RootState> = {
-  getProfile: (state: ProfileState): Profile | null => state.profile,
+  getFileId: (state: ProfileState): string | null => state.fileId,
   getUploadResult: (state: ProfileState): Result | null => state.uploadResult,
 };
 

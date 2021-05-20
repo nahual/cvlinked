@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@decorators/di";
 import { Response,} from 'express';
-import { Response as Res, Params, Controller, Get, Post, Middleware, Request as Req } from '@decorators/express';
+import { Response as Res, Params, Controller, Get, Post, Middleware, Request as Req, Query } from '@decorators/express';
 
 import ApiController from '../../../lib/controller';
 import { Logger, StdLogger } from "../../../lib/loggers";
@@ -14,6 +14,8 @@ import { profile } from "winston";
 @Injectable()
 export default class LinkedInController extends ApiController {
   
+  private uploadedCsv = {};
+
   constructor(
     @Inject(StdLogger) private logger: Logger,
     @Inject(LinkedInService) private service: LinkedInService
@@ -22,16 +24,26 @@ export default class LinkedInController extends ApiController {
   }
 
   @Post('/upload', [SingleFileUploadMiddleware])
-  async uploaCsvProfiles(@Req() req: Request | any, @Res() res: Response) {
+  async uploadCsvProfiles(@Req() req: Request | any, @Res() res: Response) {
     try {
       const id = uuidv1();
       const profiles = await csvtojson().fromString(req.file.buffer.toString('utf8'))
 
-      this.service.processProfiles(id, profiles)
-
-      res.status(200).json({ id });
+      const csv = await this.service.processProfiles(id, profiles)
+      this.uploadedCsv[csv.fileName] = csv.content
+      res.status(200).send({ id });
     } catch (error) {
       res.status(500).json({ error });
     }
+  }
+
+  @Get('/download', [SingleFileUploadMiddleware])
+  async downloadCsvProfiles(@Query('filename') filename, @Res() res: Response) {
+    const csv = this.uploadedCsv[filename]
+    if(!csv) return res.status(404).send()
+    
+    res.setHeader("Content-Type", "text/csv");
+    res.setHeader("Content-Disposition", `attachment; filename=${filename}`);
+    res.status(200).send(csv);
   }
 }

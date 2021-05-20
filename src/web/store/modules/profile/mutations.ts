@@ -4,13 +4,13 @@ import Profile from '../../../model/profile';
 import ProfileState from './state';
 
 export enum MutationEvents {
-  SET_PROFILE = 'SET_PROFILE',
+  SET_FILEID = 'SET_FILEID',
   UPLOAD_RESULT = 'UPLOAD_RESULT'
 }
 
 export const mutations: MutationTree<ProfileState> = {
-  [MutationEvents.SET_PROFILE](state: ProfileState, profile: Profile) {
-    state.profile = profile;
+  [MutationEvents.SET_FILEID](state: ProfileState, fileId: string) {
+    state.fileId = fileId;
   },
 
   [MutationEvents.UPLOAD_RESULT](state: ProfileState, result: Result) {
