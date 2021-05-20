@@ -25,7 +25,7 @@ const createServer = (app: Application, protocol: string) => {
   })[protocol]()
 }
 
-const port: Number = parseInt(<any> process.env.API_PORT) || 3000;
+const port: Number = parseInt(<any> process.env.PORT) || 3000;
 
 const RunInitializer: Initializer = new Initializer(
   (app: Application) => {

@@ -2,8 +2,8 @@ import Docs from "../lib/docs";
 
 class ApiDocs extends Docs {
 
-  serverUrl: string = process.env.API_PROTOCOL && process.env.API_HOST && process.env.API_PORT
-  ? `${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.API_PORT}`
+  serverUrl: string = process.env.API_PROTOCOL && process.env.API_HOST && process.env.PORT
+  ? `${process.env.API_PROTOCOL}://${process.env.API_HOST}:${process.env.PORT}`
   : 'http://localhost:3000'
 
   tags: object[] = [

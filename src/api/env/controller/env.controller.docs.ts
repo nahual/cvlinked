@@ -25,7 +25,7 @@ class EnvDocs extends Docs {
                       type: 'string',
                       example: 'API'
                     },
-                    API_PORT: {
+                    PORT: {
                         type: 'number',
                         example: 3000
                     }
