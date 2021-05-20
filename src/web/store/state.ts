@@ -1,1 +1,1 @@
-export default interface RootState {}
+export default interface RootState {};

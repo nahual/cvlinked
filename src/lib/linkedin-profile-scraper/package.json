@@ -1,0 +1,133 @@
+{
+  "_from": "linkedin-profile-scraper",
+  "_id": "linkedin-profile-scraper@2.3.1",
+  "_inBundle": false,
+  "_integrity": "sha512-AFuGK8Jbv3ROskv+lk7u0+96It8lhSmpCSRdVaTpwwHV0UWqXx4TTClLMEhrD9i0sUyRzSNe8T3L6F6jdXOG7A==",
+  "_location": "/linkedin-profile-scraper",
+  "_phantomChildren": {
+    "extract-zip": "2.0.1",
+    "https-proxy-agent": "4.0.0",
+    "mitt": "2.1.0",
+    "progress": "2.0.3",
+    "proxy-from-env": "1.1.0",
+    "rimraf": "3.0.2",
+    "tar-fs": "2.1.1",
+    "unbzip2-stream": "1.4.3",
+    "ws": "7.4.5"
+  },
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "linkedin-profile-scraper",
+    "name": "linkedin-profile-scraper",
+    "escapedName": "linkedin-profile-scraper",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/linkedin-profile-scraper/-/linkedin-profile-scraper-2.3.1.tgz",
+  "_shasum": "5fd7f3ab2602764fab66ebbfcf8c908929e96e29",
+  "_spec": "linkedin-profile-scraper",
+  "_where": "/Users/christianangelone/Desktop/cvlinked",
+  "author": {
+    "name": "Jordy van den Aardweg",
+    "email": "jordyvandenaardweg@gmail.com",
+    "url": "https://github.com/jvandenaardweg"
+  },
+  "bugs": {
+    "url": "https://github.com/jvandenaardweg/linkedin-profile-scraper/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "all-the-cities": "^3.1.0",
+    "i18n-iso-countries": "^5.4.0",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
+    "puppeteer": "^4.0.1",
+    "tree-kill": "^1.2.2",
+    "tslib": "^2.0.0"
+  },
+  "deprecated": false,
+  "description": "LinkedIn profile scraper returning structured profile data in JSON. Works in 2020.",
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/jest": "^26.0.3",
+    "@types/moment-timezone": "^0.5.13",
+    "@types/node": "^14.0.14",
+    "@types/puppeteer": "^3.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jest": "^26.1.0",
+    "release-it": "^13.6.4",
+    "ts-jest": "^26.1.1",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.9.6",
+    "typescript-tslint-plugin": "^0.5.5"
+  },
+  "homepage": "https://github.com/jvandenaardweg/linkedin-profile-scraper#readme",
+  "jest": {
+    "globals": {
+      "NODE_ENV": "test"
+    },
+    "testEnvironment": "node",
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts?$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{ts,js,jsx,json,node}",
+      "!**/node_modules/**",
+      "!**/typings/**",
+      "!**/integration/**"
+    ],
+    "testPathIgnorePatterns": [
+      ".e2e.test.ts"
+    ]
+  },
+  "license": "ISC",
+  "main": "dist/index.js",
+  "name": "linkedin-profile-scraper",
+  "release-it": {
+    "git": {
+      "commit": true,
+      "tag": true,
+      "push": true
+    },
+    "hooks": {
+      "after:bump": "npx auto-changelog -p"
+    },
+    "npm": {
+      "publish": false
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvandenaardweg/linkedin-profile-scraper.git"
+  },
+  "scripts": {
+    "build": "npx tsc -p tsconfig.production.json",
+    "release": "release-it",
+    "start": "ts-node-dev -r dotenv/config --inspect=9230 --respawn --transpileOnly ./src/examples/server.ts",
+    "test": "NODE_ENV=test jest --coverage",
+    "test:watch": "NODE_ENV=test jest --watch --coverage",
+    "update": "npx npm-check --update"
+  },
+  "types": "dist/index.d.ts",
+  "version": "2.3.1"
+}
