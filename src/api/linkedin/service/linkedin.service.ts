@@ -27,7 +27,7 @@ export default class LinkedInService extends ApiService {
   
   private scraper: LinkedInProfileScraper;
   private ready: boolean = false;
-  private key: string = 'AQEDATWEp_8ESGzlAAABeWyGs_oAAAF5kJM3-k0ANGL1dWAJ9n8a_7uoNWIDYyor-4VCMGf6FaUcOIGfFf-Y2cJDk7fjdswhQzn3MEmvD49celaGcg94ODkoBJ4YHSPxceebD46LCr_b77qL0zPlhuWJ';
+  private key: string = 'AQEDATWEp_8B1O3CAAABeeRFSx0AAAF6CFHPHU4AV4ByagLa_F-a2JllmBMfmRRNfgZx8SIqVy2wZVSlyfKTxP4JLBjLspVkGICBInHooQdnjr4NRm6NGaRnzflpu-YvMZKE0FTzbQ14WTt8gZhtDd2F';
 
   constructor(
     @Inject(StdLogger) private logger: Logger
@@ -57,11 +57,12 @@ export default class LinkedInService extends ApiService {
   private hasEnglish(education: Education[], skills: Skill[]): boolean{
     let english = false;
     education.forEach(e => {
-      const has = e.degreeName && new RegExp('^.*(ingles|Ingles|english|English).*$').test(e.degreeName)
-      if(has) english = has
+      const hasInDegreeName  = e.degreeName && new RegExp('^.*(ingles|Ingles|Inglés|inglés|english|English).*$').test(e.degreeName)
+      const hasInSchoolName = e.schoolName && new RegExp('^.*(ingles|Ingles|Inglés|inglés|english|English).*$').test(e.schoolName)
+      if(hasInDegreeName || hasInSchoolName) english = true
     })
     skills.forEach(s => {
-      const has = s.skillName && new RegExp('^.*(ingles|Ingles|english|English).*$').test(s.skillName)
+      const has = s.skillName && new RegExp('^.*(ingles|Ingles|Inglés|inglés|english|English).*$').test(s.skillName)
       if(has) english = has
     })
     return english
@@ -76,7 +77,7 @@ export default class LinkedInService extends ApiService {
       const hasNahualInFieldOfStudy = e.fieldOfStudy && new RegExp('^.*(nahual|Nahual).*$').test(e.fieldOfStudy)
       if (hasNahualInDegreeName || hasNahualInSchoolName || hasNahualInFieldOfStudy) {
         nahual.has = true
-        nahual.startDate = e.startDate
+        nahual.startDate = e.startDate ? moment(e.startDate).format('YYYY/MM/DD') : null
         return nahual;
       }
     }
@@ -102,7 +103,11 @@ export default class LinkedInService extends ApiService {
 
     const last_job = result.experiences.length > 0 ? result.experiences[0].company : null;
     const last_job_role = result.experiences.length > 0 ? result.experiences[0].title : null;
-    const last_job_start_date = result.experiences.length > 0 ? result.experiences[0].startDate : null;
+    const last_job_start_date = result.experiences.length > 0
+      ? result.experiences[0].startDate
+        ? moment(result.experiences[0].startDate).format('YYYY/MM/DD')
+        : null
+      : null;
 
     const english = this.hasEnglish(result.education, result.skills)
     const nahual = this.hasNahual(result.education)

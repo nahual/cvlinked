@@ -365,7 +365,7 @@ class LinkedInProfileScraper {
                 });
                 utils_1.statusLog(logSection, `Got experiences data: ${JSON.stringify(experiences)}`, scraperSessionId);
                 utils_1.statusLog(logSection, `Parsing education data...`, scraperSessionId);
-                const rawEducationData = yield page.$$eval('#education-section ul > .ember-view', (nodes) => {
+                let rawEducationData = yield page.$$eval('#education-section ul > .ember-view', (nodes) => {
                     var _a, _b;
                     let data = [];
                       for (const node of nodes) {
@@ -390,6 +390,38 @@ class LinkedInProfileScraper {
                       }
                     return data;
                 });
+
+                const rawCertificationData = yield page.$$eval('#certifications-section ul > .ember-view', (nodes) => {
+
+                  let data = []
+                  for (const node of nodes) {
+
+                    const degreeNameElement = node.querySelector('.pv-certifications__summary-info > h3');
+                    const degreeName = (degreeNameElement === null || degreeNameElement === void 0 ? void 0 : degreeNameElement.textContent) || null;
+
+                    const schoolNameElement = node.querySelector('.pv-certifications__summary-info > p:nth-child(2) > span:nth-child(2)');
+                    const schoolName = (schoolNameElement === null || schoolNameElement === void 0 ? void 0 : schoolNameElement.textContent) || null;
+
+                    const startDateElement = node.querySelector('.pv-certifications__summary-info > p:nth-child(3) > span:nth-child(2)');
+                    let startDate = (startDateElement === null || startDateElement === void 0 ? void 0 : startDateElement.textContent) || null;
+
+                    startDate = startDate ? startDate.replace(/\D/g,'') : null
+
+                    data.push({
+                      schoolName,
+                      degreeName,
+                      fieldOfStudy: null,
+                      startDate,
+                      endDate: null
+                    })
+                  }
+                  return data
+                })
+          
+                utils_1.statusLog(logSection, `Got certification data: ${JSON.stringify(rawCertificationData)}`, scraperSessionId)
+          
+                rawEducationData = rawEducationData.concat(rawCertificationData)
+
                 const education = rawEducationData.map(rawEducation => {
                     let startDate = null;
                     let endDate = null;

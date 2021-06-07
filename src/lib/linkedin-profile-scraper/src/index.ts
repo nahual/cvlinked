@@ -698,7 +698,7 @@ export class LinkedInProfileScraper {
 
       statusLog(logSection, `Parsing education data...`, scraperSessionId)
 
-      const rawEducationData: RawEducation[] = await page.$$eval('#education-section ul > .ember-view', (nodes) => {
+      let rawEducationData: RawEducation[] = await page.$$eval('#education-section ul > .ember-view', (nodes) => {
         // Note: the $$eval context is the browser context.
         // So custom methods you define in this file are not available within this $$eval.
         let data: RawEducation[] = []
@@ -735,6 +735,28 @@ export class LinkedInProfileScraper {
 
         return data
       });
+
+      const rawCertificationData: RawEducation[] = await page.$$eval('#certifications-section ul > .ember-view', (nodes) => {
+
+        let data: RawEducation[] = []
+        for (const node of nodes) {
+          const schoolNameElement = node.querySelector('.pv-certifications__summary-info > p:nth-child(1) > span:nth-child(2)');
+          const schoolName = schoolNameElement?.textContent || null;
+
+          data.push({
+            schoolName,
+            degreeName: null,
+            fieldOfStudy: null,
+            startDate: null,
+            endDate: null
+          })
+        }
+        return data
+      })
+
+      statusLog(logSection, `Got certification data: ${JSON.stringify(rawCertificationData)}`, scraperSessionId)
+
+      rawEducationData = rawEducationData.concat(rawCertificationData)
 
       // Convert the raw data to clean data using our utils
       // So we don't have to inject our util methods inside the browser context, which is too damn difficult using TypeScript
