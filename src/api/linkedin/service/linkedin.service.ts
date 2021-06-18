@@ -27,7 +27,7 @@ export default class LinkedInService extends ApiService {
   
   private scraper: LinkedInProfileScraper;
   private ready: boolean = false;
-  private key: string = 'AQEDATWEp_8B1O3CAAABeeRFSx0AAAF6CFHPHU4AV4ByagLa_F-a2JllmBMfmRRNfgZx8SIqVy2wZVSlyfKTxP4JLBjLspVkGICBInHooQdnjr4NRm6NGaRnzflpu-YvMZKE0FTzbQ14WTt8gZhtDd2F';
+  private key: string = 'AQEDATWEp_8A6N_9AAABeggtItYAAAF6LDmm1k0AGIvEtlhnsUPOFUmEGb-OpbadHyu0sY9QEFr3L0oxGHAz48bf3yQIw7xOwJ_dV090dohHL2RMZ7zX3Nm1QO4_Zx97cSgxKr_RT4qyToRU5WROqtJ8';
 
   constructor(
     @Inject(StdLogger) private logger: Logger
