@@ -65,6 +65,7 @@ export declare class LinkedInProfileScraper {
     setup: () => Promise<void>;
     private createPage;
     private getBlockedHosts;
+    updateSessionCookie: (cookie: string) => void;
     close: (page?: puppeteer.Page | undefined) => Promise<void>;
     checkIfLoggedIn: () => Promise<void>;
     run: (profileUrl: string) => Promise<{

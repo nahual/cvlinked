@@ -206,6 +206,10 @@ export class LinkedInProfileScraper {
     statusLog(logSection, `Using options: ${JSON.stringify(this.options)}`);
   }
 
+  public updateSessionCookie = (cookie: string) => {
+    this.options.sessionCookieValue = cookie;
+  }
+
   /**
    * Method to load Puppeteer in memory so we can re-use the browser instance.
    */

@@ -1,5 +1,6 @@
 import path from 'path';
 import express, { Application } from 'express';
+import bodyParser from 'body-parser';
 import figlet from 'figlet';
 import ApiRouter from './api/index';
 import {
@@ -25,6 +26,8 @@ const initializer: Initializer =
     .and(RunInitializer);
 
 let app: Application = express()
+  .use(bodyParser.json())
   .use('/', express.static(path.join(__dirname, '../public')))
   .use('/api', ApiRouter);
+
 export const Api: Application = initializer.init(app);

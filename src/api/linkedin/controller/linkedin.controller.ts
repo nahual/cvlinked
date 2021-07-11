@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@decorators/di";
 import { Response,} from 'express';
-import { Response as Res, Params, Controller, Get, Post, Middleware, Request as Req, Query } from '@decorators/express';
+import { Response as Res, Controller, Get, Post, Request as Req, Body, Query } from '@decorators/express';
 
 import ApiController from '../../../lib/controller';
 import { Levels, Logger, StdLogger } from "../../../lib/loggers";
@@ -23,6 +23,19 @@ export default class LinkedInController extends ApiController {
     super(logger, 'LinkedInController');
   }
 
+  @Post('/cookie')
+  async updateCookie(@Body() reqBody: Body | any, @Res() res: Response) {
+    try {
+      const { cookie } = reqBody
+      this.service.updateSessionCookie(cookie)
+      return res.sendStatus(200);
+    } catch (error) {
+      this.logger.log(Levels.ERROR, `Error updating cookie: ${error.message} `);
+      console.log(error)
+      res.status(500).json({ error });
+    }
+  }
+
   @Post('/upload', [SingleFileUploadMiddleware])
   async uploadCsvProfiles(@Req() req: Request | any, @Res() res: Response) {
     try {
@@ -41,7 +54,7 @@ export default class LinkedInController extends ApiController {
   @Get('/download', [SingleFileUploadMiddleware])
   async downloadCsvProfiles(@Query('filename') filename, @Res() res: Response) {
     const csv = this.uploadedCsv[filename]
-    if(!csv) return res.status(404).send()
+    if(!csv) return res.sendStatus(404);
     
     res.setHeader("Content-Type", "text/csv");
     res.setHeader("Content-Disposition", `attachment; filename=${filename}`);

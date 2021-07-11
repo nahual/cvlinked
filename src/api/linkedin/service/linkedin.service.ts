@@ -179,6 +179,10 @@ export default class LinkedInService extends ApiService {
     return batches;
   }
 
+  updateSessionCookie(cookie: string) {
+    this.scraper.updateSessionCookie(cookie);
+  }
+
   processProfiles(id: string, profiles: Array<{link: string}>): Promise<{fileName: string, content: string}> {
     return (async () => {
       const batches = this.batchify(profiles, 15)
