@@ -334,7 +334,7 @@ class LinkedInProfileScraper {
                         const startDate = (startDatePart === null || startDatePart === void 0 ? void 0 : startDatePart.trim()) || null;
                         const endDatePart = (dateRangeText === null || dateRangeText === void 0 ? void 0 : dateRangeText.split('–')[1]) || null;
                         const endDateIsPresent = (endDatePart === null || endDatePart === void 0 ? void 0 : endDatePart.trim().toLowerCase()) === 'present' || false;
-                        const endDate = (endDatePart && !endDateIsPresent) ? endDatePart.trim() : 'Present';
+                        const endDate = (endDatePart && !endDateIsPresent) ? endDatePart.trim() : new Date();
                         const locationElement = node.querySelector('.pv-entity__location span:nth-child(2)');
                         const location = (locationElement === null || locationElement === void 0 ? void 0 : locationElement.textContent) || null;
                         data.push({
@@ -454,7 +454,7 @@ class LinkedInProfileScraper {
                         const startDate = (startDatePart === null || startDatePart === void 0 ? void 0 : startDatePart.trim()) || null;
                         const endDatePart = (dateRangeText === null || dateRangeText === void 0 ? void 0 : dateRangeText.split('–')[1]) || null;
                         const endDateIsPresent = (endDatePart === null || endDatePart === void 0 ? void 0 : endDatePart.trim().toLowerCase()) === 'present' || false;
-                        const endDate = (endDatePart && !endDateIsPresent) ? endDatePart.trim() : 'Present';
+                        const endDate = (endDatePart && !endDateIsPresent) ? endDatePart.trim() : new Date();
                         const descriptionElement = node.querySelector('.pv-entity__description');
                         const description = (descriptionElement === null || descriptionElement === void 0 ? void 0 : descriptionElement.textContent) || null;
                         data.push({
