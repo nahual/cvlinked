@@ -36,6 +36,9 @@ class LinkedInProfileScraper {
             headless: true
         };
         this.browser = null;
+        this.updateSessionCookie = (cookie) => {
+          this.options.sessionCookieValue = cookie;
+        }
         this.setup = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             const logSection = 'setup';
             try {
@@ -212,6 +215,7 @@ class LinkedInProfileScraper {
             const logSection = 'checkIfLoggedIn';
             const page = yield this.createPage();
             utils_1.statusLog(logSection, 'Checking if we are still logged in...');
+            utils_1.statusLog(logSection, 'Cookie li_at: ' + this.options.sessionCookieValue);
             yield page.goto('https://www.linkedin.com/login', {
                 waitUntil: 'networkidle2',
                 timeout: this.options.timeout
